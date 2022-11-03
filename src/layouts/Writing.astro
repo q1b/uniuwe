@@ -1,5 +1,5 @@
 ---
-import Layout from './Core.astro';
+import Layout from './Default.astro';
 
 export interface Props {
 	frontmatter: {
@@ -11,11 +11,10 @@ export interface Props {
 const {
 	frontmatter: { title, description },
 } = Astro.props;
-console.log('Running');
 ---
 
-<Layout title={title} description={description}>
-	<h1>{title}</h1>
-	<p>{description}</p>
+<Layout title={title} isArticle class="prose prose-invert" description={description}>
+	<h1 class="text-6xl font-black not-prose mb-0 text-white">{title}</h1>
+	<p class="text-slate-400">{description}</p>
 	<slot />
 </Layout>
