@@ -1,35 +1,165 @@
 ---
 import Core from './Core.astro';
-
+import { twMerge } from 'tailwind-merge';
+import { Sprite } from 'astro-icon';
+import Icons from '~/static/icons';
 export interface Props {
+	class?: string;
 	title: string;
 	description: string;
 	date?: string;
 	image?: string;
+	isArticle?: boolean;
 	layout?: string;
 }
-const { title, description, date, image } = Astro.props;
+const ifArticle = (ifStr: string, elseStr: string = '') => (isArticle ? ifStr : elseStr);
+const buildWith = ['astro', 'typescript', 'tailwindcss'];
+const { title, description, date, image, class: className, isArticle } = Astro.props;
+const maxWidth = isArticle ? 'max-w-2xl' : 'max-w-6xl';
+const mainClassName = twMerge(
+	'mt-20 flex flex-col items-center justify-center w-full max-w-none',
+	ifArticle('mt-4'),
+	className
+);
 ---
 
 <Core
-	class="bg-slate-900 w-full min-h-screen"
+	isArticle={isArticle}
+	class="flex flex-col items-center px-2 pt-4 bg-slate-900"
 	date={date}
 	title={title}
 	description={description}
 	image={image}
 >
-	<header>
-		<h1>Header</h1>
-		<nav>
-			<!-- main navigation in here -->
+	<header
+		style="box-shadow:0px 4px 12px 4px #1a91ff05,inset 0px 1px 6px 0px #33415515,inset 0px 1px 36px 6px #fff1,inset 17px -2px 72px 12px #33415515"
+		class={`${maxWidth} flex ${ifArticle(
+			'',
+			'fixed'
+		)} z-20 isolate transition-colors backdrop-blur-md backdrop-saturate-150 gap-x-4 items-center px-3 py-2 w-full rounded-xl`}
+	>
+		<a href="/">
+			<svg
+				width="39"
+				height="39"
+				class="flex-shrink-0 text-white"
+				viewBox="0 0 39 39"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				><path
+					class="fill-blue-50 stroke-blue-600 stroke-[4] transition-colors"
+					d="M36.1401 19.0701C36.1401 28.4975 28.4976 36.14 19.07 36.14C9.64251 36.14 2 28.4975 2 19.0701C2 9.64251 9.64251 2 19.07 2C-1.28576 22.3557 15.9976 39.2339 36.1401 19.0701Z"
+					stroke-opacity="0.56"></path><path
+					class="dark:hidden block fill-white stroke-blue-500 stroke-[4] transition-colors"
+					d="M36.1401 19.0701C36.1401 28.4975 28.4976 36.14 19.07 36.14C9.6425 36.14 2 28.4975 2 19.0701C2 9.64251 9.6425 2 19.07 2C-1.28576 22.3557 15.9976 39.2339 36.1401 19.0701Z"
+					stroke-opacity="0.56"></path><path
+					class="stroke-2 dark:stroke-white stroke-lime-900 transition-colors"
+					d="M19.0698 27.9464C23.9721 27.9464 27.9462 23.9723 27.9462 19.0699C27.9462 14.1676 23.9721 10.1935 19.0698 10.1935C14.1675 10.1935 10.1934 14.1676 10.1934 19.0699C10.1934 23.9723 14.1675 27.9464 19.0698 27.9464Z"
+				></path>
+			</svg>
+		</a>
+		<div class="w-full"></div>
+		<nav class="flex items-center">
+			<div class="flex items-center gap-x-1">
+				<a
+					href="#"
+					class="p-2 rounded-md transition-colors duration-200 text-white/60 hover:bg-slate-500/10 hover:text-white drop-shadow [--tw-drop-shadow:drop-shadow(0_1px_2px_theme(colors.slate.500))_drop-shadow(0_1px_1px_rgb(51_65_85/0.9))] group"
+				>
+					<Sprite name="fluent:notepad-edit-16-regular" class="w-6 h-6" />
+					<div
+						class="absolute left-1/2 -translate-x-1/2 border-4 opacity-0 group-hover:opacity-100 border-x-transparent border-t-transparent"
+					>
+					</div>
+					<div
+						class="absolute w-auto p-2 min-w-max z-10 top-10 -left-3 origin-center rounded-md text-white bg-slate-800 text-xs font-bold transition-transform group-hover:delay-300 duration-100 scale-0 group-hover:scale-100"
+					>
+						Writings
+					</div>
+				</a>
+				<a
+					href="#"
+					class="p-2 rounded-md transition-colors duration-200 text-white/60 hover:bg-indigo-700/10 hover:text-white drop-shadow [--tw-drop-shadow:drop-shadow(0_1px_2px_theme(colors.indigo.500))_drop-shadow(0_1px_1px_rgb(51_65_85/0.9))] group"
+				>
+					<Sprite name="fluent:person-32-regular" class="w-6 h-6" />
+					<div
+						class="absolute left-1/2 -translate-x-1/2 border-4 opacity-0 group-hover:opacity-100 border-x-transparent border-t-transparent"
+					>
+					</div>
+					<div
+						class="absolute w-auto p-2 min-w-max z-10 top-10 -left-2 origin-center rounded-md text-white bg-slate-800 text-xs font-bold transition-transform group-hover:delay-300 duration-100 scale-0 group-hover:scale-100"
+					>
+						Profile
+					</div>
+				</a>
+			</div>
+			<div class="w-0.5 h-6 rounded-full bg-white/50 mx-1"></div>
+			<div class="flex items-center gap-x-1">
+				<a
+					href="#"
+					class="p-2 rounded-md transition-colors duration-200 text-white/60 hover:bg-slate-700/10 hover:text-white drop-shadow [--tw-drop-shadow:drop-shadow(0_1px_2px_rgb(96_165_250/1))_drop-shadow(0_1px_1px_rgb(51_65_85/0.9))] group"
+				>
+					<Sprite name="radix-icons:twitter-logo" class="w-6 h-6" />
+					<div
+						class="absolute left-1/2 -translate-x-1/2 border-4 opacity-0 group-hover:opacity-100 border-x-transparent border-t-transparent"
+					>
+					</div>
+					<div
+						class="absolute w-auto p-2 min-w-max z-10 top-10 -left-2 origin-center rounded-md text-white bg-slate-800 text-xs font-bold transition-transform group-hover:delay-300 duration-100 scale-0 group-hover:scale-100"
+					>
+						Twitter
+					</div>
+				</a>
+				<a
+					href="#"
+					class="p-2 rounded-md transition-colors duration-200 text-white dark:text-white/60 dark:hover:text-white dark:hover:bg-slate-500/10 hover:bg-lime-200 drop-shadow [--tw-drop-shadow:drop-shadow(0_1px_2px_rgb(155_255_0_/1))_drop-shadow(0_1px_1px_rgb(105_255_140/1))] dark:[--tw-drop-shadow:drop-shadow(0_1px_2px_rgb(68_64_60/1))_drop-shadow(0_1px_1px_rgb(155_136_196/0.9))] relative group"
+				>
+					<Sprite name="radix-icons:github-logo" class="w-6 h-6" />
+					<div
+						class="absolute left-1/2 -translate-x-1/2 border-4 opacity-0 group-hover:opacity-100 border-x-transparent border-t-transparent"
+					>
+					</div>
+					<div
+						class="absolute w-auto p-2 min-w-max z-10 top-10 -left-2 rounded-md text-white bg-slate-800 text-xs font-bold transition-transform group-hover:delay-300 duration-100 scale-0 group-hover:scale-100"
+					>
+						Github
+					</div>
+				</a>
+			</div>
 		</nav>
 	</header>
-
 	<!-- Here is our page's main content -->
-	<main></main>
-
+	<main class={mainClassName}>
+		<article class={maxWidth}>
+			<slot />
+		</article>
+	</main>
 	<!-- And here is our main footer that is used across all the pages of our website -->
-	<footer>
-		<!-- footer content in here -->
+	<footer class={`${maxWidth} mt-auto w-full pt-14 mb-6`}>
+		<div class="flex items-center bg-slate-800 px-2 py-1 w-max rounded-lg">
+			<div class="inline-flex items-center gap-x-2">
+				<span class="text-slate-200"> Built with</span>
+				{
+					buildWith.map((iconName) => {
+						type Icon = {
+							decoration: string;
+							url: string;
+							text: string;
+							icon: string;
+						};
+						const icon: Icon = Icons[iconName];
+						return (
+							<a class="inline-flex items-center gap-x-1" href={icon.url}>
+								<span class="inline-block">
+									<Sprite name={icon.icon} class="w-6 h-6" />
+								</span>
+								<span class={`first-letter:uppercase ${icon.decoration}`}> {icon.text} </span>
+							</a>
+						);
+					})
+				}
+				<span class="w-0.5 h-4 bg-white/10"></span>
+				<span class="text-white bg-white/10 inline-block px-2 rounded-md">Build For Community</span>
+			</div>
+		</div>
 	</footer>
 </Core>
