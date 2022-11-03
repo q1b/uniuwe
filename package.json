@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/prompts": "^2.4.1",
     "@typescript-eslint/parser": "^5.42.0",
+    "astro-icon": "^0.8.0",
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^8.26.0",
     "eslint-plugin-astro": "^0.21.0",
