@@ -1,6 +1,7 @@
 ---
 import '~/index.css';
 import { twMerge } from 'tailwind-merge';
+import { Sprite } from 'astro-icon';
 /**
  * Core Layout
  * It's build to be used in other Layouts, Not in Pages
@@ -161,6 +162,8 @@ const bodyClassName = twMerge('', className);
 		</style>
 	</head>
 	<body class={bodyClassName}>
-		<slot />
+		<Sprite.Provider>
+			<slot />
+		</Sprite.Provider>
 	</body>
 </html>
