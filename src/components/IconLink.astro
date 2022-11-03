@@ -1,0 +1,23 @@
+---
+export interface Props {
+	href: string;
+	label: string;
+}
+const { href, label } = Astro.props;
+---
+
+<a
+	href={href}
+	class="p-2 rounded-md transition-colors duration-200 text-white drop-shadow [--tw-drop-shadow:drop-shadow(0_1px_2px_theme(colors.blue.500))_drop-shadow(0_1px_1px_rgb(222_233_255/1))] group"
+>
+	<slot />
+	<div
+		class="absolute left-1/2 -translate-x-1/2 border-4 opacity-0 group-hover:opacity-100 border-x-transparent border-t-transparent"
+	>
+	</div>
+	<div
+		class="absolute w-auto p-2 min-w-max z-10 top-10 -left-2 origin-center rounded-md text-white bg-slate-800 text-xs font-bold transition-transform group-hover:delay-300 duration-100 scale-0 group-hover:scale-100"
+	>
+		{label}
+	</div>
+</a>
