@@ -12,22 +12,29 @@ const posts = await Astro.glob<Frontmatter>('./writings/*.mdx');
 	description="Nothing much still got time to write some articles about programming as well shared my projects over `/projects`."
 	date="Thu Nov 03 2022 16:02:40 GMT+0530 (India Standard Time)"
 >
-	<main>
-		<h1 class="text-5xl">Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list">
-			{
-				posts.map(({ frontmatter: { title, description }, url }) => {
-					return (
-						<li class="text-xl text-black">
-							<a href={url}> {title} </a>
-						</li>
-					);
-				})
-			}
-		</ul>
-	</main>
+	<h1 class="text-9xl font-black">
+		<span class="text-transparent bg-clip-text bg-gradient-to-tr from-cyan-400 to-blue-500">
+			SpoonLight
+		</span> Webdev
+	</h1>
+	<p class="max-w-2xl text-xl mt-6 text-slate-400">
+		currently working as a front-end developer in xyz company, for last 6month. It has been a
+		awesome experience but along with it I have been learning and building my core concepts stronger
+		with YouTube and Udemy, because I believe if root are strong and deep, the tree cannot be thrown
+		away by storms, yup! I am the tree here.
+	</p>
+	<a href="#" class="underline mt-4 text-sm text-blue-400">read more</a>
+	<h2 class="text-7xl font-black mt-14">Writings</h2>
+  <!-- gradient card https://play.tailwindcss.com/jMNcwiEzcm -->
+	<ul class="mt-4" role="list">
+		{
+			posts.map(({ frontmatter: { title, description }, url }) => {
+				return (
+					<li class="text-xl text-black">
+						<a href={url}>{title}</a>
+					</li>
+				);
+			})
+		}
+	</ul>
 </Layout>
