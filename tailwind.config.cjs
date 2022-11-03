@@ -11,6 +11,9 @@ module.exports = {
 			...defaultTheme.screens,
     },
     extend: {
+      fontFamily: {
+				sans: ['InterVar', ...defaultTheme.fontFamily.sans],
+			},
 			aspectRatio: {
 				auto: 'auto',
 				square: '1 / 1',
