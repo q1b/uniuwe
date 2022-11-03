@@ -1,0 +1,21 @@
+---
+import Layout from './Core.astro';
+
+export interface Props {
+	frontmatter: {
+		title: string;
+		description: string;
+	};
+}
+
+const {
+	frontmatter: { title, description },
+} = Astro.props;
+console.log('Running');
+---
+
+<Layout title={title} description={description}>
+	<h1>{title}</h1>
+	<p>{description}</p>
+	<slot />
+</Layout>
